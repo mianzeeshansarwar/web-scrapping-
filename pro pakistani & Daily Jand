@@ -1,0 +1,31 @@
+import pandas as pd
+import numpy as np
+import requests
+import re 
+from bs4 import BeautifulSoup
+url = 'https://propakistani.pk/'
+response = requests.get(url)
+soup = BeautifulSoup(response.text,'html.parser')
+txt = str(soup)
+
+h2_headings = soup.find_all('h5')
+
+for headings in h2_headings:
+    print(headings.text.strip())
+url = 'https://jang.com.pk/'
+response = requests.get(url)
+print(response)
+soup = BeautifulSoup(response.text , 'html.parser')
+txt = str(soup)
+main_headings = soup.find_all('div', class_='main-heading')
+for heading in main_headings:
+    h1 = heading.find('h1')
+    h2 = heading.find('h2')
+    h3 = heading.find('h3')
+
+    if h1:
+        print(h1.text.strip())
+    if h2:
+        print(h2.text.strip())
+    if h3:
+        print(h3.text.strip())
